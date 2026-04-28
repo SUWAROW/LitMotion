@@ -3,6 +3,7 @@
     "version": "2.0.1",
     "displayName": "LitMotion",
     "description": "Lightning-fast and Zero Allocation Tween Library for Unity.",
+    "unity": "6000.2",
     "keywords": [
         "dots",
         "tween"

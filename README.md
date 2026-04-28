@@ -44,7 +44,7 @@ The full version of documentation can be found [here](https://annulusgames.githu
 
 ### Requirements
 
-* Unity 2021.3 or later
+* Unity 6000.2 or later
 * Burst 1.6.0 or later
 * Collection 1.5.1 or later
 * Mathematics 1.0.0 or later
@@ -203,7 +203,7 @@ By introducing this package, you can use the LitMotion Animation component to co
 
 ### Requirements
 
-* Unity 2021.3 or later
+* Unity 6000.2 or later
 * LitMotion 2.0.0 or later
 
 ### Installation
@@ -267,4 +267,5 @@ Untiy forum: https://forum.unity.com/threads/litmotion-lightning-fast-and-zero-a
 ## License
 
 [MIT License](LICENSE)
+
 

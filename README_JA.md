@@ -45,7 +45,7 @@ LitMotionは[Magic Tween](https://github.com/annulusgames/MagicTween)に続い�
 
 ### 要件
 
-* Unity 2021.3 以上
+* Unity 6000.2 以上
 * Burst 1.6.0 以上
 * Collection 1.5.1 以上
 * Mathematics 1.0.0 以上
@@ -201,7 +201,7 @@ LitMotion.AnimationはLitMotionで構築されたアニメーションの機能�
 
 ### 要件
 
-* Unity 2021.3 以上
+* Unity 6000.2 以上
 * LitMotion 2.0.0 以上
 
 ### インストール

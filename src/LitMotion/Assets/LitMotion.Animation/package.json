@@ -3,6 +3,7 @@
     "version": "2.0.1",
     "displayName": "LitMotion.Animation",
     "description": "Animation component (visual editor) for LitMotion",
+    "unity": "6000.2",
     "keywords": [
         "dots",
         "tween",

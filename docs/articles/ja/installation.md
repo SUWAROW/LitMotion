@@ -4,7 +4,7 @@
 
 ### 要件
 
-* Unity 2021.3 以上
+* Unity 6000.2 以上
 * Burst 1.6.0 以上
 * Collection 1.5.1 以上
 * Mathematics 1.0.0 以上
@@ -40,3 +40,4 @@ https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotio
 1. Releasesから最新のリリースに移動
 2. unitypackageファイルをダウンロード
 3. ファイルを開き、プロジェクトにインポートする
+

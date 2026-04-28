@@ -4,7 +4,7 @@ Let's install LitMotion in your project to get started using it.
 
 ### Requirements
 
-* Unity 2021.3 or later
+* Unity 6000.2 or later
 * Burst 1.6.0 or later
 * Collections 1.5.1 or later
 * Mathematics 1.0.0 or later
@@ -39,3 +39,4 @@ It's also possible to install LitMotion from the provided unitypackage file.
 
 1. Navigate to the Releases section and download the latest unitypackage file.
 2. Open the downloaded file and import it into your project.
+

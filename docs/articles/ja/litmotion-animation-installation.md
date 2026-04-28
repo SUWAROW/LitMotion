@@ -4,7 +4,7 @@ LitMotion.Animationはコアパッケージとは独立して配布されてい�
 
 ### 要件
 
-* Unity 2021.3 以上
+* Unity 6000.2 以上
 * LitMotion 2.0.0 以上
 
 ### Package Manager経由でインストール (推奨)
@@ -38,3 +38,4 @@ https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotio
 1. Releasesから最新のリリースに移動
 2. unitypackageファイルをダウンロード
 3. ファイルを開き、プロジェクトにインポートする
+
