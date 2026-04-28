@@ -9,7 +9,7 @@ using UnityEditor.IMGUI.Controls;
 
 namespace LitMotion.Editor
 {
-    internal sealed class MotionDebuggerViewItem : TreeViewItem
+    internal sealed class MotionDebuggerViewItem : TreeViewItem<int>
     {
         public MotionDebuggerViewItem(int id) : base(id) { }
 
@@ -51,14 +51,16 @@ namespace LitMotion.Editor
         }
     }
 
-    internal sealed class MotionDebuggerTreeView : TreeView
+    internal sealed class MotionDebuggerTreeView : TreeView<int>
     {
         const string sortedColumnIndexStateKey = "MotionTrackerTreeView_sortedColumnIndex";
+        static readonly GUIStyle selectedLabelStyle = new(EditorStyles.whiteLabel) { alignment = TextAnchor.MiddleLeft };
+        static readonly GUIStyle defaultLabelStyle = new(EditorStyles.label) { alignment = TextAnchor.MiddleLeft };
 
-        public IReadOnlyList<TreeViewItem> CurrentBindingItems;
+        public IReadOnlyList<TreeViewItem<int>> CurrentBindingItems;
 
         public MotionDebuggerTreeView()
-            : this(new TreeViewState(), new MultiColumnHeader(new MultiColumnHeaderState(new[]
+            : this(new TreeViewState<int>(), new MultiColumnHeader(new MultiColumnHeaderState(new[]
             {
                 new MultiColumnHeaderState.Column() { headerContent = new GUIContent("Name"), width = 50},
                 new MultiColumnHeaderState.Column() { headerContent = new GUIContent("Motion Type"), width = 80},
@@ -68,7 +70,7 @@ namespace LitMotion.Editor
 
         }
 
-        MotionDebuggerTreeView(TreeViewState state, MultiColumnHeader header)
+        MotionDebuggerTreeView(TreeViewState<int> state, MultiColumnHeader header)
             : base(state, header)
         {
             rowHeight = 20;
@@ -84,10 +86,10 @@ namespace LitMotion.Editor
 
         public void ReloadAndSort()
         {
-            var currentSelected = state.selectedIDs;
+            var currentSelected = state.selectedIds;
             Reload();
             HeaderSortingChanged(multiColumnHeader);
-            state.selectedIDs = currentSelected;
+            state.selectedIds = currentSelected;
         }
 
         void HeaderSortingChanged(MultiColumnHeader multiColumnHeader)
@@ -104,7 +106,7 @@ namespace LitMotion.Editor
                 2 => ascending ? items.OrderBy(item => item.Handle.Time) : items.OrderByDescending(item => item.Handle.Time),
                 _ => throw new ArgumentOutOfRangeException(nameof(index), index, null),
             };
-            CurrentBindingItems = rootItem.children = orderedEnumerable.Cast<TreeViewItem>().ToList();
+            CurrentBindingItems = rootItem.children = orderedEnumerable.Cast<TreeViewItem<int>>().ToList();
             BuildRows(rootItem);
         }
 
@@ -141,10 +143,10 @@ namespace LitMotion.Editor
             };
         }
 
-        protected override TreeViewItem BuildRoot()
+        protected override TreeViewItem<int> BuildRoot()
         {
-            var root = new TreeViewItem { depth = -1 };
-            var children = new List<TreeViewItem>();
+            var root = new TreeViewItem<int> { depth = -1 };
+            var children = new List<TreeViewItem<int>>();
 
             var id = 0;
             foreach (var tracking in MotionDebugger.Items)
@@ -162,11 +164,11 @@ namespace LitMotion.Editor
             }
 
             CurrentBindingItems = children;
-            root.children = CurrentBindingItems as List<TreeViewItem>;
+            root.children = children;
             return root;
         }
 
-        protected override bool CanMultiSelect(TreeViewItem item)
+        protected override bool CanMultiSelect(TreeViewItem<int> item)
         {
             return false;
         }
@@ -174,14 +176,14 @@ namespace LitMotion.Editor
         protected override void RowGUI(RowGUIArgs args)
         {
             var item = args.item as MotionDebuggerViewItem;
+            if (item == null) return;
 
             for (var visibleColumnIndex = 0; visibleColumnIndex < args.GetNumVisibleColumns(); visibleColumnIndex++)
             {
                 var rect = args.GetCellRect(visibleColumnIndex);
                 var columnIndex = args.GetColumn(visibleColumnIndex);
 
-                var labelStyle = args.selected ? EditorStyles.whiteLabel : EditorStyles.label;
-                labelStyle.alignment = TextAnchor.MiddleLeft;
+                var labelStyle = args.selected ? selectedLabelStyle : defaultLabelStyle;
                 switch (columnIndex)
                 {
                     case 0:
@@ -199,7 +201,7 @@ namespace LitMotion.Editor
             }
         }
 
-        protected override bool DoesItemMatchSearch(TreeViewItem item, string search)
+        protected override bool DoesItemMatchSearch(TreeViewItem<int> item, string search)
         {
             var viewItem = item as MotionDebuggerViewItem;
             return viewItem.DebugName.Contains(search, StringComparison.InvariantCultureIgnoreCase);

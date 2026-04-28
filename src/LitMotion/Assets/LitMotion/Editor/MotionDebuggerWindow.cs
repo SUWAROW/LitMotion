@@ -143,7 +143,7 @@ namespace LitMotion.Editor
 
             detailsScroll = EditorGUILayout.BeginScrollView(detailsScroll, windowStyle);
             {
-                var selected = treeView.state.selectedIDs;
+                var selected = treeView.state.selectedIds;
                 if (selected.Count > 0 && treeView.CurrentBindingItems.FirstOrDefault(x => x.id == selected[0]) is MotionDebuggerViewItem item)
                 {
                     ref var dataRef = ref MotionManager.GetDataRef(item.Handle, false);
@@ -217,7 +217,7 @@ namespace LitMotion.Editor
 
             stackTraceScroll = EditorGUILayout.BeginScrollView(stackTraceScroll, windowStyle);
             {
-                var selected = treeView.state.selectedIDs;
+                var selected = treeView.state.selectedIds;
                 if (selected.Count > 0 && treeView.CurrentBindingItems.FirstOrDefault(x => x.id == selected[0]) is MotionDebuggerViewItem item)
                 {
                     EditorGUILayout.LabelField("Stack Trace");
