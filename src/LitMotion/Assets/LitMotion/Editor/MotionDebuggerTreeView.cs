@@ -86,10 +86,10 @@ namespace LitMotion.Editor
 
         public void ReloadAndSort()
         {
-            var currentSelected = state.selectedIds;
+            var currentSelected = state.selectedIDs;
             Reload();
             HeaderSortingChanged(multiColumnHeader);
-            state.selectedIds = currentSelected;
+            state.selectedIDs = currentSelected;
         }
 
         void HeaderSortingChanged(MultiColumnHeader multiColumnHeader)
